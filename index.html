@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOVA — KEEP BECOMING</title>
+  <link rel="icon" href="assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="main-nav nav-light" aria-label="Main navigation">
+    <div class="main-nav-inner">
+      <a href="#/" class="nav-logo" aria-label="MOVA Home">MOVA</a>
+      <div class="nav-links">
+        <a href="#/shop" class="nav-link">Shop</a>
+        <a href="#/phases" class="nav-link">Phases</a>
+        <a href="#/about" class="nav-link">About</a>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-bag" id="cart-toggle" aria-label="Open shopping bag">Bag (<span id="cart-count">0</span>)</button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open menu"><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="mobile-nav-content">
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">&times;</button>
+      <nav class="mobile-nav-links" aria-label="Mobile navigation">
+        <a href="#/shop" class="mobile-nav-link">Shop</a>
+        <a href="#/phases" class="mobile-nav-link">Phases</a>
+        <a href="#/about" class="mobile-nav-link">About</a>
+      </nav>
+      <div class="mobile-nav-sub">
+        <a href="#/shop?collection=essentials">Essentials</a>
+        <a href="#/shop?collection=phase-01">Phase 01</a>
+        <a href="#/shop?collection=editions">Editions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay" id="cart-overlay" role="dialog" aria-modal="true" aria-label="Shopping bag">
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);" id="cart-backdrop"></div>
+    <div class="cart-drawer" style="position:absolute;top:0;right:0;height:100%;width:100%;max-width:440px;background:#f5f0eb;box-shadow:0 20px 60px rgba(0,0,0,0.2);display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(181,176,170,0.3);">
+        <h2 class="font-display" style="font-size:13px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;margin:0;">Your Bag</h2>
+        <button id="cart-close" style="font-size:24px;cursor:pointer;background:none;border:none;line-height:1;color:#0a0a0a;" aria-label="Close bag">&times;</button>
+      </div>
+      <div id="cart-items" style="flex:1;overflow-y:auto;padding:16px 24px;"></div>
+      <div id="cart-footer" class="hidden" style="border-top:1px solid rgba(181,176,170,0.3);padding:20px 24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <span class="font-display" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#b5b0aa;">Subtotal</span>
+          <span id="cart-subtotal" class="font-display" style="font-size:18px;font-weight:600;"></span>
+        </div>
+        <p style="font-size:11px;color:#b5b0aa;margin-bottom:16px;">Shipping calculated at checkout</p>
+        <a href="#/checkout" id="checkout-btn" class="btn btn-primary btn-full" style="padding:14px;">Checkout →</a>
+      </div>
+      <div id="cart-empty" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;">
+        <p class="font-display" style="font-size:18px;font-weight:600;letter-spacing:0.05em;margin-bottom:8px;">NOTHING IN MOTION YET.</p>
+        <p style="font-size:13px;color:#b5b0aa;margin-bottom:24px;">Your bag is waiting.</p>
+        <a href="#/shop" class="btn btn-outline" style="padding:12px 24px;">Explore MOVA</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- Size Guide Modal -->
+  <div class="sg-overlay" id="sg-overlay">
+    <div class="sg-modal">
+      <button class="sg-close" id="sg-close" aria-label="Close size guide">&times;</button>
+      <h3 class="sg-title">Size Guide</h3>
+      <table class="sg-table">
+        <thead><tr><th>Size</th><th>Chest</th><th>Length</th><th>Shoulder</th></tr></thead>
+        <tbody>
+          <tr><td><strong>XS</strong></td><td>86 cm</td><td>66 cm</td><td>42 cm</td></tr>
+          <tr><td><strong>S</strong></td><td>91 cm</td><td>68 cm</td><td>44 cm</td></tr>
+          <tr><td><strong>M</strong></td><td>96 cm</td><td>70 cm</td><td>46 cm</td></tr>
+          <tr><td><strong>L</strong></td><td>101 cm</td><td>72 cm</td><td>48 cm</td></tr>
+          <tr><td><strong>XL</strong></td><td>106 cm</td><td>74 cm</td><td>50 cm</td></tr>
+        </tbody>
+      </table>
+      <p class="sg-note">Measurements are approximate. For footwear, order your regular size. For precise measurements, contact support@mova.com</p>
+    </div>
+  </div>
+
+  <!-- Sticky Add to Bag (Mobile) -->
+  <div class="sticky-atb" id="sticky-atb">
+    <div class="sticky-atb-inner">
+      <div class="sticky-atb-info">
+        <p class="sticky-atb-name" id="sticky-atb-name"></p>
+        <p class="sticky-atb-price" id="sticky-atb-price"></p>
+      </div>
+      <button class="sticky-atb-btn" id="sticky-atb-btn">Add to Bag →</button>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ========== HOME PAGE ========== -->
+    <div id="page-home" class="page active">
+
+      <!-- HERO -->
+      <section class="hero-section">
+        <div class="hero-bg" style="background-image:url('assets/images/campaigns/general/motion.jfif');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="hero-phase">PHASE 01 / ORIGIN</p>
+          <h1 class="hero-mova">MOVA</h1>
+          <p class="hero-tagline">KEEP BECOMING.</p>
+          <a href="#/phase/01" class="hero-cta">ENTER PHASE 01 →</a>
+        </div>
+      </section>
+
+      <!-- BRAND STATEMENT -->
+      <section class="statement-section">
+        <div class="statement-inner reveal">
+          <div class="statement-text">
+            <h2>YOU ARE <span>NOT FINISHED.</span><br>YOU ARE <span>BECOMING.</span></h2>
+          </div>
+          <div class="statement-copy">
+            MOVA exists for the in-between. For the ones who move different. For the ones who choose to keep becoming.
+            <strong>THIS IS MOVEMENT.</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHASE 01 -->
+      <section class="phase-section">
+        <div class="phase-bg" style="background-image:url('assets/images/campaigns/phase-01/campaign-01.jfif');"></div>
+        <div class="phase-overlay"></div>
+        <div class="phase-content reveal">
+          <p class="phase-label">01 / ORIGIN</p>
+          <h2 class="phase-heading">EVERY MOVEMENT STARTS SOMEWHERE.</h2>
+          <p class="phase-desc">PHASE 01 is the beginning. A collection built for transition, for early mornings and late nights, for the moments that shape you.</p>
+          <a href="#/phase/01" class="phase-cta">EXPLORE THE PHASE →</a>
+        </div>
+      </section>
+
+      <!-- FEATURED PIECES -->
+      <section class="featured-section">
+        <div class="featured-inner">
+          <div class="featured-header reveal">
+            <div>
+              <h2>FEATURED PIECES</h2>
+              <p>Five pieces. One movement.</p>
+            </div>
+          </div>
+          <div class="featured-grid" id="featured-grid">
+            <a href="#/product/13" class="featured-card">
+              <div class="featured-card-img"><img src="assets/images/Products/13.png" alt="Transit Jacket" loading="lazy"></div>
+              <p class="featured-card-name">TRANSIT JACKET</p>
+              <p class="featured-card-price">$295.00</p>
+            </a>
+            <a href="#/product/19" class="featured-card">
+              <div class="featured-card-img"><img src="assets/images/Products/19.png" alt="Motion Hoodie" loading="lazy"></div>
+              <p class="featured-card-name">MOTION HOODIE</p>
+              <p class="featured-card-price">$185.00</p>
+            </a>
+            <a href="#/product/9" class="featured-card">
+              <div class="featured-card-img"><img src="assets/images/Products/09.png" alt="FORM 01" loading="lazy"></div>
+              <p class="featured-card-name">FORM 01</p>
+              <p class="featured-card-price">$245.00</p>
+            </a>
+            <a href="#/product/23" class="featured-card">
+              <div class="featured-card-img"><img src="assets/images/Products/23.png" alt="ORIGIN 01" loading="lazy"></div>
+              <p class="featured-card-name">ORIGIN 01</p>
+              <p class="featured-card-price">$275.00</p>
+            </a>
+            <a href="#/product/29" class="featured-card">
+              <div class="featured-card-img"><img src="assets/images/Products/29.png" alt="FORM 02" loading="lazy"></div>
+              <p class="featured-card-name">FORM 02</p>
+              <p class="featured-card-price">$325.00</p>
+            </a>
+          </div>
+          <a href="#/shop" class="view-all-link">VIEW ALL PRODUCTS →</a>
+        </div>
+      </section>
+
+      <!-- IN MOTION -->
+      <section class="motion-section">
+        <div class="motion-bg" style="background-image:url('assets/images/campaigns/phase-01/campaign-02.jfif');"></div>
+        <div class="motion-overlay"></div>
+        <div class="motion-content reveal">
+          <h2>IN MOTION.</h2>
+          <a href="#/shop" class="motion-cta">VIEW CAMPAIGN →</a>
+        </div>
+      </section>
+
+      <!-- MOVA SYSTEM -->
+      <section class="system-section">
+        <div class="system-inner">
+          <h2 class="reveal">THE MOVA SYSTEM</h2>
+          <div class="system-grid">
+            <a href="#/shop?collection=essentials" class="system-card reveal">
+              <div class="system-card-bg" style="background-image:url('assets/images/campaigns/general/editorial-01.jfif');"></div>
+              <div class="system-card-overlay"></div>
+              <div class="system-card-content">
+                <p class="system-card-title">ESSENTIALS</p>
+                <p class="system-card-sub">THE FOUNDATION.</p>
+              </div>
+            </a>
+            <a href="#/phase/01" class="system-card reveal reveal-delay-1">
+              <div class="system-card-bg" style="background-image:url('assets/images/campaigns/general/editorial-03.jfif');"></div>
+              <div class="system-card-overlay"></div>
+              <div class="system-card-content">
+                <p class="system-card-title">PHASES</p>
+                <p class="system-card-sub">THE EVOLUTION.</p>
+              </div>
+            </a>
+            <a href="#/shop?collection=editions" class="system-card reveal reveal-delay-2">
+              <div class="system-card-bg" style="background-image:url('assets/images/campaigns/general/editorial-02.jfif');"></div>
+              <div class="system-card-overlay"></div>
+              <div class="system-card-content">
+                <p class="system-card-title">EDITIONS</p>
+                <p class="system-card-sub">THE EXPERIMENT.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHOP PHASE 01 -->
+      <section class="shop-section">
+        <div class="shop-inner">
+          <div class="shop-header reveal">
+            <div>
+              <h2>SHOP PHASE 01</h2>
+              <p>Pieces from the first movement.</p>
+            </div>
+            <a href="#/shop?collection=phase-01" class="view-all-link" style="margin-top:0;">SHOP PHASE 01 →</a>
+          </div>
+          <div class="shop-grid" id="phase01-featured">
+            <a href="#/product/15" class="shop-card">
+              <div class="shop-card-img"><img src="assets/images/Products/15.png" alt="Origin Tee" loading="lazy"></div>
+              <p class="shop-card-name">ORIGIN TEE</p>
+              <p class="shop-card-price">$95.00</p>
+            </a>
+            <a href="#/product/20" class="shop-card">
+              <div class="shop-card-img"><img src="assets/images/Products/20.png" alt="Phase Trouser" loading="lazy"></div>
+              <p class="shop-card-name">PHASE TROUSER</p>
+              <p class="shop-card-price">$175.00</p>
+            </a>
+            <a href="#/product/21" class="shop-card">
+              <div class="shop-card-img"><img src="assets/images/Products/21.png" alt="Transit Cargo" loading="lazy"></div>
+              <p class="shop-card-name">TRANSIT CARGO</p>
+              <p class="shop-card-price">$185.00</p>
+            </a>
+            <a href="#/product/19" class="shop-card">
+              <div class="shop-card-img"><img src="assets/images/Products/19.png" alt="Motion Hoodie" loading="lazy"></div>
+              <p class="shop-card-name">MOTION HOODIE</p>
+              <p class="shop-card-price">$185.00</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL STATEMENT + FOOTER -->
+      <section class="final-section">
+        <div class="final-inner">
+          <h2 class="final-heading reveal">THIS IS NOT<br>THE FINAL FORM.</h2>
+          <p class="final-keep reveal">KEEP BECOMING.</p>
+
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <h3>MOVA</h3>
+              <p>MOVEMENT.<br>EVOLUTION.<br>INDIVIDUALITY.</p>
+            </div>
+            <div class="footer-col">
+              <h4>SHOP</h4>
+              <ul>
+                <li><a href="#/shop">All Products</a></li>
+                <li><a href="#/shop?collection=essentials">Essentials</a></li>
+                <li><a href="#/shop?collection=phase-01">Phase 01</a></li>
+                <li><a href="#/shop?collection=editions">Editions</a></li>
+                <li><a href="#/shop?category=footwear">Footwear</a></li>
+                <li><a href="#/shop?category=accessories">Accessories</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>EXPLORE</h4>
+              <ul>
+                <li><a href="#/phases">Phases</a></li>
+                <li><a href="#/about">About</a></li>
+                <li><a href="#/archive">Archive</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>SUPPORT</h4>
+              <ul>
+                <li><a href="#/tracking">Order Tracking</a></li>
+                <li><a href="#/">Returns</a></li>
+                <li><a href="#/">FAQ</a></li>
+                <li><a href="#/">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-newsletter">
+              <h4>STAY IN MOTION.</h4>
+              <p>Enter your email.</p>
+              <div class="newsletter-form">
+                <input type="email" placeholder="Email address" aria-label="Email for newsletter">
+                <button type="button" aria-label="Subscribe">→</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p>© 2026 MOVA. ALL RIGHTS RESERVED.</p>
+            <div class="footer-socials">
+              <a href="#/" aria-label="Instagram">IG</a>
+              <a href="#/" aria-label="X">X</a>
+              <a href="#/" aria-label="TikTok">TK</a>
+            </div>
+            <p>TERMS &nbsp; PRIVACY</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ========== SHOP PAGE ========== -->
+    <div id="page-shop" class="page">
+      <div style="padding-top:80px;padding-bottom:60px;padding-left:clamp(24px,4vw,48px);padding-right:clamp(24px,4vw,48px);">
+        <div style="max-width:1400px;margin:0 auto;">
+          <div style="margin-bottom:32px;">
+            <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-0.02em;margin:0 0 4px 0;">Shop</h2>
+            <p style="font-size:13px;color:#b5b0aa;margin:0;">All 30 products. One movement.</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;" id="shop-filters">
+            <button class="filter-pill active" data-filter="all">All</button>
+            <button class="filter-pill" data-filter="essentials">Essentials</button>
+            <button class="filter-pill" data-filter="phase-01">Phase 01</button>
+            <button class="filter-pill" data-filter="editions">Editions</button>
+            <span style="width:1px;height:20px;background:rgba(181,176,170,0.4);margin:0 4px;"></span>
+            <button class="filter-pill" data-filter="footwear">Footwear</button>
+            <button class="filter-pill" data-filter="accessories">Accessories</button>
+          </div>
+          <div style="position:relative;margin-bottom:20px;">
+            <input type="text" id="shop-search" placeholder="Search products..." autocomplete="off" aria-label="Search products" style="width:100%;padding:12px 16px 12px 40px;font-family:'Space Grotesk',sans-serif;font-size:13px;background:#faf8f6;border:1px solid rgba(181,176,170,0.35);color:#0a0a0a;outline:none;transition:border-color .2s;box-sizing:border-box;">
+            <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#b5b0aa;font-size:15px;pointer-events:none;">⌕</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid rgba(181,176,170,0.3);">
+            <p class="font-display" style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#b5b0aa;margin:0;"><span id="product-count">30</span> Products</p>
+            <select id="sort-select" style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:none;cursor:pointer;outline:none;color:#b5b0aa;" aria-label="Sort products">
+              <option value="featured">Featured</option>
+              <option value="newest">Newest</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name">Name: A–Z</option>
+            </select>
+          </div>
+          <div class="shop-grid" id="shop-grid"></div>
+          <p id="no-results" class="hidden" style="text-align:center;padding:80px 0;font-family:'Space Grotesk',sans-serif;font-size:18px;color:#b5b0aa;">No products match your criteria.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== PRODUCT PAGE ========== -->
+    <div id="page-product" class="page"><div style="padding-top:80px;" id="product-page-content"></div></div>
+
+    <!-- ========== PHASES PAGE ========== -->
+    <div id="page-phases" class="page">
+
+      <!-- SECTION 01 — PHASES HERO -->
+      <section class="phases-hero">
+        <div class="phases-hero-bg" style="background-image:url('assets/images/campaigns/general/editorial-01.jfif');"></div>
+        <div class="phases-hero-overlay"></div>
+        <div class="phases-hero-content">
+          <p class="phases-hero-label">MOVA / EVOLUTION ARCHIVE</p>
+          <h1 class="phases-hero-title">PHASES</h1>
+          <p class="phases-hero-subtitle">MOVA DOES NOT STAND STILL.</p>
+          <p class="phases-hero-desc">Each phase marks a moment in the evolution of MOVA. Each chapter begins somewhere and moves forward from there.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 02 — WHAT IS A PHASE? -->
+      <section class="phases-explain">
+        <div class="phases-explain-inner">
+          <div class="phases-explain-header reveal">
+            <h2 class="phases-explain-title">EVERY MOVEMENT<br>HAS A MOMENT.</h2>
+            <p class="phases-explain-desc">A PHASE is a chapter in the MOVA story. Each one captures a different moment of movement, identity, and becoming. A new PHASE introduces its own visual world, collection, campaign, and perspective while remaining connected to the larger MOVA identity.</p>
+          </div>
+          <div class="phases-system-grid">
+            <div class="phases-system-card reveal">
+              <p class="phases-system-card-num">01</p>
+              <h3 class="phases-system-card-title">ESSENTIALS</h3>
+              <p class="phases-system-card-tag">THE FOUNDATION.</p>
+              <p class="phases-system-card-desc">Permanent, wearable, core products. Timeless pieces designed to remain relevant.</p>
+            </div>
+            <div class="phases-system-card active reveal reveal-delay-1">
+              <p class="phases-system-card-num">02</p>
+              <h3 class="phases-system-card-title">PHASES</h3>
+              <p class="phases-system-card-tag">THE EVOLUTION.</p>
+              <p class="phases-system-card-desc">Story-driven collections. Each PHASE has its own concept, visual world, and campaign.</p>
+              <span class="phases-active-dot" style="position:absolute;top:16px;right:16px;"></span>
+            </div>
+            <div class="phases-system-card reveal reveal-delay-2">
+              <p class="phases-system-card-num">03</p>
+              <h3 class="phases-system-card-title">EDITIONS</h3>
+              <p class="phases-system-card-tag">THE EXPERIMENT.</p>
+              <p class="phases-system-card-desc">Limited and experimental releases. Creative collaborations and new concepts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 03 — CURRENT PHASE (Cinematic) -->
+      <section class="phases-current">
+        <div class="phases-current-bg" style="background-image:url('assets/images/campaigns/phase-01/hero.jfif');"></div>
+        <div class="phases-current-overlay"></div>
+        <div class="phases-current-content">
+          <div class="phases-current-badge"><span class="phases-active-dot"></span><span>CURRENT PHASE</span></div>
+          <p class="phases-current-watermark">01</p>
+          <h2 class="phases-current-title">01 / ORIGIN</h2>
+          <p class="phases-current-tagline">EVERY MOVEMENT STARTS SOMEWHERE.</p>
+          <div class="phases-current-divider"></div>
+          <p class="phases-current-desc">PHASE 01 / ORIGIN represents the beginning of the MOVA journey. It is the first major chapter of the brand — foundational, intentional, and confident.</p>
+          <div class="phases-current-ctas">
+            <a href="#/phase/01" class="btn-primary-light">EXPLORE PHASE 01 →</a>
+            <a href="#/shop?collection=phase-01" class="btn-outline-light">Shop Collection →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 04 — TIMELINE -->
+      <section class="phases-timeline">
+        <div class="phases-timeline-inner">
+          <p class="phases-timeline-label reveal">THE EVOLUTION</p>
+          <div class="phases-timeline-track">
+            <div class="phases-timeline-item reveal">
+              <div class="phases-timeline-dots"><div class="phases-timeline-dot origin"></div><div class="phases-timeline-line"></div></div>
+              <div class="phases-timeline-info"><p class="phases-timeline-status">ORIGIN POINT</p><p class="phases-timeline-name">MOVA</p></div>
+            </div>
+            <div class="phases-timeline-item reveal reveal-delay-1">
+              <div class="phases-timeline-dots"><div class="phases-timeline-dot active"></div><div class="phases-timeline-line"></div></div>
+              <div class="phases-timeline-info"><p class="phases-timeline-status current">CURRENT</p><p class="phases-timeline-name">01 / ORIGIN</p><p class="phases-timeline-sub">The first movement. Beginning.</p><a href="#/phase/01" class="phases-timeline-link">EXPLORE PHASE 01 →</a></div>
+            </div>
+            <div class="phases-timeline-item reveal reveal-delay-2">
+              <div class="phases-timeline-dots"><div class="phases-timeline-dot upcoming"></div><div class="phases-timeline-line faded"></div></div>
+              <div class="phases-timeline-info"><p class="phases-timeline-status muted">IN DEVELOPMENT</p><p class="phases-timeline-name muted">02 / SHIFT</p><p class="phases-timeline-sub muted">The next movement.</p></div>
+            </div>
+            <div class="phases-timeline-item reveal reveal-delay-2">
+              <div class="phases-timeline-dots"><div class="phases-timeline-dot future"></div></div>
+              <div class="phases-timeline-info"><p class="phases-timeline-status ghost">COMING NEXT</p><p class="phases-timeline-name ghost">03 / FUTURE</p><p class="phases-timeline-sub ghost">Unknown.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 05 — THE PHASE ARCHIVE -->
+      <section class="phases-archive">
+        <div class="phases-archive-inner">
+          <div class="phases-archive-header reveal">
+            <p class="text-label">Archive</p>
+            <h2 class="phases-archive-title">THE PHASE ARCHIVE</h2>
+          </div>
+          <div class="phases-archive-grid">
+            <a href="#/phase/01" class="phases-archive-card current reveal">
+              <img src="assets/images/campaigns/phase-01/campaign-01.jfif" alt="Phase 01" loading="lazy">
+              <div class="phases-archive-card-overlay"></div>
+              <div class="phases-archive-card-status current"><span class="phases-active-dot" style="width:6px;height:6px;"></span><span>CURRENT</span></div>
+              <p class="phases-archive-card-number">01</p>
+              <p class="phases-archive-card-name">ORIGIN</p>
+              <p class="phases-archive-card-count">13 PRODUCTS</p>
+              <span class="phases-archive-card-cta">ENTER PHASE 01 →</span>
+            </a>
+            <div class="phases-archive-card upcoming reveal reveal-delay-1">
+              <div class="phases-archive-card-status upcoming"><span>IN DEVELOPMENT</span></div>
+              <p class="phases-archive-card-number">02</p>
+              <p class="phases-archive-card-name">SHIFT</p>
+              <p class="phases-archive-card-count">Coming Next</p>
+            </div>
+            <div class="phases-archive-card locked reveal reveal-delay-2">
+              <div class="phases-archive-card-status locked"><span>COMING NEXT</span></div>
+              <p class="phases-archive-card-number">03</p>
+              <p class="phases-archive-card-name">FUTURE</p>
+              <p class="phases-archive-card-count">Unknown</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 06 — FEATURED MOMENTS (Editorial Grid) -->
+      <section class="phases-editorial">
+        <div class="phases-editorial-inner">
+          <div class="phases-editorial-label reveal"><span class="phases-active-dot" style="width:6px;height:6px;"></span><span>01 / ORIGIN — FIRST MOVEMENT</span></div>
+          <div class="phases-editorial-grid-top">
+            <div class="phases-editorial-img hero reveal"><img src="assets/images/campaigns/phase-01/campaign-01.jfif" alt="Phase 01 Campaign" loading="lazy"><div class="img-gradient"></div><span class="img-label bottom-left">IN MOTION</span></div>
+            <div class="phases-editorial-img reveal reveal-delay-1"><img src="assets/images/campaigns/phase-01/campaign-02.jfif" alt="Phase 01 Detail" loading="lazy"><span class="img-label bottom-right">FOUNDATION</span></div>
+            <div class="phases-editorial-typo reveal reveal-delay-2"><h3>BEGINNING<br>→<br>MOTION</h3></div>
+          </div>
+          <div class="phases-editorial-grid-bottom">
+            <div class="phases-editorial-img reveal"><img src="assets/images/campaigns/general/editorial-02.jfif" alt="Phase 01 Moment" loading="lazy"><span class="img-label bottom-left">BECOMING</span></div>
+            <div class="phases-editorial-img reveal reveal-delay-1"><img src="assets/images/campaigns/general/editorial-03.jfif" alt="Phase 01 Campaign" loading="lazy"><span class="img-label top-left">01 / ORIGIN</span></div>
+            <div class="phases-editorial-img reveal reveal-delay-2"><img src="assets/images/campaigns/phase-01/hero.jfif" alt="Phase 01 Hero" loading="lazy"><span class="img-label bottom-right">STILL MOVING</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 07 — LOOKING FORWARD -->
+      <section class="phases-forward">
+        <div class="phases-forward-bg" style="background-image:url('assets/images/campaigns/general/motion.jfif');"></div>
+        <div class="phases-forward-overlay"></div>
+        <div class="phases-forward-content reveal">
+          <p class="phases-forward-label">01 / ORIGIN — THE BEGINNING.</p>
+          <div class="phases-forward-line"></div>
+          <p class="phases-forward-heading">THE NEXT PHASE IS ALREADY MOVING.</p>
+          <p class="phases-forward-desc">The brand is not complete. The story is still moving. The next chapter has not fully arrived.</p>
+          <h2 class="phases-forward-keep">KEEP BECOMING.</h2>
+          <p class="phases-forward-sub">THIS IS NOT THE FINAL FORM.</p>
+          <div class="phases-forward-ctas">
+            <a href="#/" class="btn-primary-light">RETURN TO MOVA →</a>
+            <a href="#/phase/01" class="btn-outline-light">EXPLORE THE CURRENT PHASE →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <section class="final-section">
+        <div class="final-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <h3>MOVA</h3>
+              <p>MOVEMENT.<br>EVOLUTION.<br>INDIVIDUALITY.</p>
+            </div>
+            <div class="footer-col">
+              <h4>SHOP</h4>
+              <ul>
+                <li><a href="#/shop">All Products</a></li>
+                <li><a href="#/shop?collection=essentials">Essentials</a></li>
+                <li><a href="#/shop?collection=phase-01">Phase 01</a></li>
+                <li><a href="#/shop?collection=editions">Editions</a></li>
+                <li><a href="#/shop?category=footwear">Footwear</a></li>
+                <li><a href="#/shop?category=accessories">Accessories</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>EXPLORE</h4>
+              <ul>
+                <li><a href="#/phases">Phases</a></li>
+                <li><a href="#/about">About</a></li>
+                <li><a href="#/archive">Archive</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>SUPPORT</h4>
+              <ul>
+                <li><a href="#/tracking">Order Tracking</a></li>
+                <li><a href="#/">Returns</a></li>
+                <li><a href="#/">FAQ</a></li>
+                <li><a href="#/">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-newsletter">
+              <h4>STAY IN MOTION.</h4>
+              <p>Enter your email.</p>
+              <div class="newsletter-form">
+                <input type="email" placeholder="Email address" aria-label="Email for newsletter">
+                <button type="button" aria-label="Subscribe">→</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p>© 2026 MOVA. ALL RIGHTS RESERVED.</p>
+            <div class="footer-socials">
+              <a href="#/" aria-label="Instagram">IG</a>
+              <a href="#/" aria-label="X">X</a>
+              <a href="#/" aria-label="TikTok">TK</a>
+            </div>
+            <p>TERMS &nbsp; PRIVACY</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========== PHASE 01 PAGE ========== -->
+    <div id="page-phase-01" class="page">
+      <!-- PHASE 01 HERO -->
+      <section class="phase01-hero">
+        <div class="phase01-hero-bg" style="background-image:url('assets/images/campaigns/phase-01/hero.jfif');"></div>
+        <div class="phase01-hero-overlay"></div>
+        <div class="phase01-hero-content">
+          <p class="phase01-hero-label">Phase 01</p>
+          <h1 class="phase01-hero-title">ORIGIN.</h1>
+          <p class="phase01-hero-tagline">Every Movement Starts Somewhere.</p>
+          <p class="phase01-hero-desc">The first collection. A beginning built on intention, movement, and the belief that you are always becoming something more.</p>
+          <a href="#/shop?collection=phase-01" class="hero-cta">Shop Phase 01 →</a>
+        </div>
+      </section>
+
+      <!-- CAMPAIGN STRIP -->
+      <section class="phase01-strip">
+        <div class="phase01-strip-inner">
+          <div class="phase01-strip-item">
+            <img src="assets/images/campaigns/phase-01/campaign-01.jfif" alt="Phase 01 Campaign" loading="lazy">
+          </div>
+          <div class="phase01-strip-item">
+            <img src="assets/images/campaigns/phase-01/campaign-02.jfif" alt="Phase 01 Campaign" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- EDITORIAL STATEMENT -->
+      <section class="phase01-statement">
+        <div class="phase01-statement-inner reveal">
+          <p class="phase01-statement-label">The Philosophy</p>
+          <h2 class="phase01-statement-title">BEGINNING → MOVEMENT → BECOMING</h2>
+          <p class="phase01-statement-desc">Phase 01 represents the beginning of the MOVA journey. Every piece in this collection was designed to be foundational — to stand on its own and to work together. This is where the identity is established.</p>
+        </div>
+      </section>
+
+      <!-- PRODUCT GRID -->
+      <section class="phase01-products">
+        <div class="phase01-products-inner">
+          <div class="phase01-products-header reveal">
+            <div>
+              <h2>THE COLLECTION</h2>
+              <p>13 products. One movement.</p>
+            </div>
+            <a href="#/shop?collection=phase-01" class="view-all-link">View All →</a>
+          </div>
+          <div class="shop-grid" id="phase01-grid"></div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="phase01-final">
+        <div class="phase01-final-bg" style="background-image:url('assets/images/campaigns/general/motion.jfif');"></div>
+        <div class="phase01-final-overlay"></div>
+        <div class="phase01-final-content reveal">
+          <h2>EVERY MOVEMENT<br>STARTS SOMEWHERE.</h2>
+          <p>You are not finished. You are becoming.</p>
+          <a href="#/shop" class="hero-cta">Explore All Products →</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ========== ABOUT PAGE ========== -->
+    <div id="page-about" class="page">
+
+      <!-- SECTION 01 — ABOUT HERO -->
+      <section class="about-hero">
+        <div class="about-hero-bg" style="background-image:url('assets/images/campaigns/general/editorial-01.jfif');"></div>
+        <div class="about-hero-overlay"></div>
+        <div class="about-hero-content">
+          <p class="about-hero-label">ABOUT MOVA</p>
+          <h1 class="about-hero-title">MOVA IS<br>MOTION.</h1>
+          <p class="about-hero-subtitle">Not just movement through space.<br>Movement through ideas, identity, perspective, and time.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 02 — THE QUESTION -->
+      <section class="about-question">
+        <h2 class="about-question-heading reveal">WHO ARE YOU<br>BECOMING?</h2>
+        <div class="about-question-body reveal">
+          <p>We are constantly changing. The person you were is not the person you are becoming.</p>
+          <p>MOVA exists in that space. The space between who you are now and what comes next.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 03 — WHY MOVA EXISTS -->
+      <section class="about-why">
+        <div class="about-why-inner">
+          <p class="about-why-label reveal">THE REASON</p>
+          <h2 class="about-why-heading reveal">YOU ARE NOT FINISHED.<br>YOU ARE BECOMING.</h2>
+          <div class="about-why-body reveal">
+            <p>MOVA was built around the belief that identity is not fixed. People are allowed to change. They are allowed to explore. They are allowed to evolve.</p>
+            <p>Style should not be treated as a costume that permanently defines someone. Instead, clothing can move with a person through different moments of their life.</p>
+            <p>MOVA creates pieces for that movement.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 04 — WHAT MOVA MEANS -->
+      <section class="about-meaning">
+        <div class="about-meaning-inner">
+          <h2 class="about-meaning-title reveal">MOVA</h2>
+          <div class="about-meaning-words">
+            <span class="about-meaning-word" data-reveal-word>MOVEMENT.</span>
+            <span class="about-meaning-word" data-reveal-word>EVOLUTION.</span>
+            <span class="about-meaning-word" data-reveal-word>CHANGE.</span>
+            <span class="about-meaning-word" data-reveal-word>BECOMING.</span>
+          </div>
+          <div class="about-meaning-desc reveal">
+            <p>MOVA is not about standing still. It represents the idea that life moves. Ideas move. Culture moves. People move. MOVA moves with them.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 05 — PHILOSOPHY MANIFESTO -->
+      <section class="about-manifesto">
+        <div class="about-manifesto-inner">
+          <p class="about-manifesto-statement reveal">NOTHING STAYS STILL.</p>
+          <span class="about-manifesto-arrow">↓</span>
+          <p class="about-manifesto-statement reveal">IDENTITY IS NOT FINAL.</p>
+          <span class="about-manifesto-arrow">↓</span>
+          <p class="about-manifesto-statement reveal">MOVEMENT CHANGES EVERYTHING.</p>
+          <span class="about-manifesto-arrow">↓</span>
+          <p class="about-manifesto-statement reveal">THIS IS NOT THE FINAL FORM.</p>
+          <p class="about-manifesto-keep reveal">KEEP BECOMING.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 06 — THE MOVA SYSTEM -->
+      <section class="about-system">
+        <div class="about-system-inner">
+          <p class="about-system-label reveal">HOW PHILOSOPHY BECOMES PRODUCT</p>
+          <div class="about-system-grid">
+            <div class="about-system-item reveal">
+              <p class="about-system-item-num">01</p>
+              <h3 class="about-system-item-title">ESSENTIALS</h3>
+              <p class="about-system-item-tag">THE FOUNDATION.</p>
+              <p class="about-system-item-desc">The pieces that remain. What grounds us.</p>
+            </div>
+            <div class="about-system-item reveal reveal-delay-1">
+              <p class="about-system-item-num">02</p>
+              <h3 class="about-system-item-title">PHASES</h3>
+              <p class="about-system-item-tag">THE EVOLUTION.</p>
+              <p class="about-system-item-desc">The chapters that move forward. Change made tangible.</p>
+            </div>
+            <div class="about-system-item reveal reveal-delay-2">
+              <p class="about-system-item-num">03</p>
+              <h3 class="about-system-item-title">EDITIONS</h3>
+              <p class="about-system-item-tag">THE EXPERIMENT.</p>
+              <p class="about-system-item-desc">The unexpected directions. Where curiosity leads.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 07 — MOVA AND YOU -->
+      <section class="about-you">
+        <h2 class="about-you-heading reveal">MOVA DOES NOT<br>DEFINE YOU.</h2>
+        <div class="about-you-body reveal">
+          <p>You define what MOVA becomes on you. The clothing is not the identity. The person wearing it is still becoming. MOVA exists to move with them.</p>
+        </div>
+        <p class="about-you-tagline reveal">NO FINAL FORM.<br>NO FINISHED VERSION.<br>JUST MOVEMENT.</p>
+      </section>
+
+      <!-- SECTION 08 — IN MOTION -->
+      <section class="about-motion">
+        <div class="about-motion-bg" style="background-image:url('assets/images/campaigns/general/motion.jfif');"></div>
+        <div class="about-motion-overlay"></div>
+        <div class="about-motion-content">
+          <p class="about-motion-label reveal">IN MOTION</p>
+          <h2 class="about-motion-statement reveal">THE STORY CONTINUES.</h2>
+        </div>
+      </section>
+
+      <!-- SECTION 09 — FINAL STATEMENT -->
+      <section class="about-final">
+        <div class="about-final-content reveal">
+          <p class="about-final-subtitle">THIS IS NOT THE FINAL FORM.</p>
+          <h2 class="about-final-keep">KEEP BECOMING.</h2>
+          <div class="about-final-ctas">
+            <a href="#/shop" class="btn-primary-light">EXPLORE MOVA →</a>
+            <a href="#/phase/01" class="btn-outline-light">ENTER THE CURRENT PHASE →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <section class="final-section">
+        <div class="final-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <h3>MOVA</h3>
+              <p>MOVEMENT.<br>EVOLUTION.<br>INDIVIDUALITY.</p>
+            </div>
+            <div class="footer-col">
+              <h4>SHOP</h4>
+              <ul>
+                <li><a href="#/shop">All Products</a></li>
+                <li><a href="#/shop?collection=essentials">Essentials</a></li>
+                <li><a href="#/shop?collection=phase-01">Phase 01</a></li>
+                <li><a href="#/shop?collection=editions">Editions</a></li>
+                <li><a href="#/shop?category=footwear">Footwear</a></li>
+                <li><a href="#/shop?category=accessories">Accessories</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>EXPLORE</h4>
+              <ul>
+                <li><a href="#/phases">Phases</a></li>
+                <li><a href="#/about">About</a></li>
+                <li><a href="#/archive">Archive</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>SUPPORT</h4>
+              <ul>
+                <li><a href="#/tracking">Order Tracking</a></li>
+                <li><a href="#/">Returns</a></li>
+                <li><a href="#/">FAQ</a></li>
+                <li><a href="#/">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-newsletter">
+              <h4>STAY IN MOTION.</h4>
+              <p>Enter your email.</p>
+              <div class="newsletter-form">
+                <input type="email" placeholder="Email address" aria-label="Email for newsletter">
+                <button type="button" aria-label="Subscribe">→</button>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>© 2026 MOVA. ALL RIGHTS RESERVED.</p>
+            <div class="footer-socials">
+              <a href="#/" aria-label="Instagram">IG</a>
+              <a href="#/" aria-label="X">X</a>
+              <a href="#/" aria-label="TikTok">TK</a>
+            </div>
+            <p>TERMS &nbsp; PRIVACY</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========== CHECKOUT PAGE ========== -->
+    <div id="page-checkout" class="page">
+      <div class="checkout-page">
+        <div class="checkout-header">
+          <div class="checkout-header-inner">
+            <p class="checkout-secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> SECURE CHECKOUT</p>
+            <h1>Complete Your Order</h1>
+          </div>
+        </div>
+        <div class="checkout-inner">
+          <div class="ck-form-col">
+            <div class="ck-steps">
+              <div class="ck-step-num done" id="ck-num-1">1</div>
+              <span class="ck-step-text on" id="ck-txt-1">Delivery</span>
+              <div class="ck-step-connector done" id="ck-conn-1"></div>
+              <div class="ck-step-num pending" id="ck-num-2">2</div>
+              <span class="ck-step-text off" id="ck-txt-2">Payment</span>
+              <div class="ck-step-connector" id="ck-conn-2"></div>
+              <div class="ck-step-num pending" id="ck-num-3">3</div>
+              <span class="ck-step-text off" id="ck-txt-3">Review</span>
+            </div>
+            <p id="checkout-error" style="color:#c4704a;font-size:13px;margin-bottom:24px;display:none;"></p>
+            <div id="checkout-step-1" class="checkout-step-content">
+              <p class="ck-section-title">Delivery Information</p>
+              <div class="ck-field"><label class="lbl">Full Name</label><input id="co-name" class="inp" type="text" autocomplete="name" placeholder="Your full name"></div>
+              <div class="ck-row">
+                <div class="ck-field"><label class="lbl">Email</label><input id="co-email" class="inp" type="email" autocomplete="email" placeholder="you@example.com"></div>
+                <div class="ck-field"><label class="lbl">Phone</label><input id="co-phone" class="inp" type="tel" placeholder="Phone number"></div>
+              </div>
+              <div class="ck-field"><label class="lbl">Address</label><input id="co-address" class="inp" type="text" placeholder="Street address"></div>
+              <div class="ck-row">
+                <div class="ck-field"><label class="lbl">City</label><input id="co-city" class="inp" type="text" placeholder="City"></div>
+                <div class="ck-field"><label class="lbl">State / Region</label><input id="co-state" class="inp" type="text" placeholder="State"></div>
+              </div>
+              <div class="ck-row">
+                <div class="ck-field"><label class="lbl">Postal Code</label><input id="co-zip" class="inp" type="text" placeholder="ZIP"></div>
+                <div class="ck-field"><label class="lbl">Country</label><input id="co-country" class="inp" type="text" placeholder="Country"></div>
+              </div>
+              <div class="ck-field">
+                <label class="lbl">Delivery Option</label>
+                <label class="ck-delivery-opt selected" onclick="this.closest('.ck-field').querySelectorAll('.ck-delivery-opt').forEach(e=>e.classList.remove('selected'));this.classList.add('selected')">
+                  <div class="delivery-label"><input type="radio" name="delivery" value="standard" checked><span>Standard (5–7 business days)</span></div>
+                  <span class="delivery-price">$10.00</span>
+                </label>
+                <label class="ck-delivery-opt" onclick="this.closest('.ck-field').querySelectorAll('.ck-delivery-opt').forEach(e=>e.classList.remove('selected'));this.classList.add('selected')">
+                  <div class="delivery-label"><input type="radio" name="delivery" value="express"><span>Express (2–3 business days)</span></div>
+                  <span class="delivery-price">$25.00</span>
+                </label>
+              </div>
+              <button id="to-payment-btn" class="btn-primary" style="width:100%;margin-top:8px">Continue to Payment →</button>
+            </div>
+            <div id="checkout-step-2" class="checkout-step-content hidden">
+              <p class="ck-section-title">Payment Details</p>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;padding:12px 16px;background:#0a0a0a;color:#f5f0eb;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-family:'Space Grotesk',sans-serif">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                Your payment is processed securely. We never store card details.
+              </div>
+              <div class="ck-field"><label class="lbl">Card Number</label><input id="co-card" class="inp" type="text" placeholder="4242 4242 4242 4242" maxlength="19"></div>
+              <div class="ck-row">
+                <div class="ck-field"><label class="lbl">Expiry Date</label><input id="co-expiry" class="inp" type="text" placeholder="MM / YY" maxlength="7"></div>
+                <div class="ck-field"><label class="lbl">Security Code</label><input id="co-cvv" class="inp" type="text" placeholder="CVV" maxlength="4"></div>
+              </div>
+              <div class="ck-field"><label class="lbl">Name on Card</label><input id="co-cardname" class="inp" type="text" placeholder="Cardholder name" autocomplete="cc-name"></div>
+              <div class="ck-actions"><button id="back-to-delivery" class="btn-outline-dark">← Back</button><button id="to-review-btn" class="btn-primary" style="flex:1">Review Order →</button></div>
+            </div>
+            <div id="checkout-step-3" class="checkout-step-content hidden">
+              <p class="ck-section-title">Review Your Order</p>
+              <div id="review-items"></div>
+              <div class="review-summary">
+                <div class="review-row"><span class="label">Subtotal</span><span id="review-subtotal"></span></div>
+                <div class="review-row"><span class="label">Shipping</span><span id="review-shipping"></span></div>
+                <div class="review-total"><span>Total</span><span id="review-total"></span></div>
+              </div>
+              <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(181,176,170,.2)">
+                <p class="lbl" style="margin-bottom:4px">Shipping To</p>
+                <p id="review-address" style="font-size:12px;white-space:pre-line;line-height:1.6"></p>
+              </div>
+              <div class="ck-actions"><button id="back-to-payment" class="btn-outline-dark">← Back</button><button id="place-order-btn" class="btn-primary" style="flex:1">Complete Order →</button></div>
+            </div>
+          </div>
+          <div class="ck-order-col">
+            <button class="ck-summary-toggle" id="ck-summary-toggle">Show Order Summary ▾</button>
+            <div class="ck-summary" id="ck-summary">
+              <p class="ck-summary-title">Order Summary</p>
+              <div id="ck-summary-items"></div>
+              <div class="ck-summary-totals">
+                <div class="ck-summary-row"><span class="label">Subtotal</span><span id="ck-subtotal"></span></div>
+                <div class="ck-summary-row"><span class="label">Shipping</span><span id="ck-shipping"></span></div>
+                <div class="ck-summary-total"><span>Total</span><span id="ck-total"></span></div>
+              </div>
+              <div class="ck-summary-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                Secure Checkout
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ORDER CONFIRMATION ========== -->
+    <div id="page-confirmation" class="page">
+      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0 clamp(24px,4vw,48px);">
+        <div style="max-width:600px;text-align:center;">
+          <p class="font-display" style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#c4704a;margin:0 0 24px 0;">Order Confirmed</p>
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;letter-spacing:-0.02em;margin:0 0 12px 0;">YOU'RE IN MOTION.</h2>
+          <p style="color:#b5b0aa;margin-bottom:32px;">Your order has been received and is being prepared.</p>
+          <div style="background:white;border:1px solid rgba(181,176,170,0.3);padding:24px;margin-bottom:32px;text-align:left;">
+            <p class="form-label" style="margin-bottom:4px;">Order Number</p>
+            <p id="order-number" class="font-display" style="font-size:18px;font-weight:600;margin-bottom:16px;"></p>
+            <div id="order-summary-items" style="border-top:1px solid rgba(181,176,170,0.3);padding-top:16px;"></div>
+            <div style="border-top:1px solid rgba(181,176,170,0.3);margin-top:16px;padding-top:16px;display:flex;justify-content:space-between;font-family:'Space Grotesk',sans-serif;font-weight:600;"><span>Total</span><span id="order-total"></span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+            <a href="#/shop" class="btn btn-primary" style="padding:14px 32px;">Continue Exploring MOVA →</a>
+            <a href="#/tracking" class="btn btn-outline" style="padding:14px 32px;">Track Order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ORDER TRACKING ========== -->
+    <div id="page-tracking" class="page">
+      <div style="padding-top:96px;padding-bottom:80px;padding-left:clamp(24px,4vw,48px);padding-right:clamp(24px,4vw,48px);">
+        <div style="max-width:600px;margin:0 auto;">
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-0.02em;margin:0 0 40px 0;">Track Your Order</h2>
+          <div id="tracking-form">
+            <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:28px;">
+              <div class="form-group"><label class="form-label" for="track-number">Order Number</label><input id="track-number" type="text" class="input" placeholder="MOVA-XXXXX"></div>
+              <div class="form-group"><label class="form-label" for="track-email">Email</label><input id="track-email" type="email" class="input"></div>
+            </div>
+            <button id="track-btn" class="btn btn-primary btn-full" style="padding:14px;">Track Order</button>
+          </div>
+          <div id="tracking-result" class="hidden" style="margin-top:40px;">
+            <p class="form-label" style="margin-bottom:4px;">Order</p>
+            <p id="track-order-id" class="font-display" style="font-size:18px;font-weight:600;margin-bottom:32px;"></p>
+            <div class="tracking-stages">
+              <div class="tracking-stage"><div class="tracking-dot active"></div><div class="tracking-line"></div><div><p class="tracking-stage-title">Order Received</p><p class="tracking-stage-desc">We have received your order.</p></div></div>
+              <div class="tracking-stage"><div class="tracking-dot current"></div><div class="tracking-line"></div><div><p class="tracking-stage-title">Being Prepared</p><p class="tracking-stage-desc">Your order is being prepared for shipment.</p></div></div>
+              <div class="tracking-stage"><div class="tracking-dot pending"></div><div class="tracking-line"></div><div><p class="tracking-stage-title inactive">In Transit</p><p class="tracking-stage-desc inactive">Your order is on its way.</p></div></div>
+              <div class="tracking-stage"><div class="tracking-dot pending"></div><div><p class="tracking-stage-title inactive">Delivered</p><p class="tracking-stage-desc inactive">Your order has been delivered.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ARCHIVE PAGE ========== -->
+    <div id="page-archive" class="page">
+      <div style="padding-top:96px;padding-bottom:80px;padding-left:clamp(24px,4vw,48px);padding-right:clamp(24px,4vw,48px);">
+        <div style="max-width:1400px;margin:0 auto;">
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-0.02em;margin:0 0 12px 0;">Archive</h2>
+          <p style="color:#b5b0aa;">Past collections and limited releases will appear here.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/core/utils.js"></script>
+  <script src="js/core/storage.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/core/components.js"></script>
+  <script src="js/data/products.js"></script>
+  <script src="js/components/navbar.js"></script>
+  <script src="js/components/footer.js"></script>
+  <script src="js/components/product-card.js"></script>
+  <script src="js/cart/cart.js"></script>
+  <script src="js/cart/cart-drawer.js"></script>
+  <script src="js/shop/shop.js"></script>
+  <script src="js/product/product.js"></script>
+  <script src="js/animations/reveals.js"></script>
+  <script src="js/checkout/checkout.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

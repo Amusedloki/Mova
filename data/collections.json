@@ -1,0 +1,28 @@
+[
+  {
+    "id": "essentials",
+    "name": "Essentials",
+    "tagline": "The Foundation",
+    "description": "Permanent, wearable, core products. Timeless pieces designed to remain relevant. The base layer of the MOVA identity.",
+    "productCount": 12,
+    "active": true
+  },
+  {
+    "id": "phase-01",
+    "name": "Phase 01 / Origin",
+    "tagline": "The Evolution",
+    "description": "The beginning. A collection built around the idea that every evolution starts with a single step — intentional, foundational, and unapologetic.",
+    "productCount": 13,
+    "active": true,
+    "concept": "BEGINNING → MOVEMENT → BECOMING",
+    "statement": "EVERY MOVEMENT STARTS SOMEWHERE."
+  },
+  {
+    "id": "editions",
+    "name": "Editions",
+    "tagline": "The Experiment",
+    "description": "Limited and experimental releases. Collaborations, experimental garments, special graphics, and new concepts. Nothing stays the same.",
+    "productCount": 5,
+    "active": true
+  }
+]

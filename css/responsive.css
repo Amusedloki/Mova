@@ -1,0 +1,162 @@
+/* ============================================
+   MOVA — Responsive Styles
+   ============================================ */
+
+/* ---- Mobile First Breakpoints ---- */
+
+/* Small (480px+) */
+@media (min-width: 480px) {
+  .grid-2-mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Medium (768px+) */
+@media (min-width: 768px) {
+  .grid-2-md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3-md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-4-md {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .section {
+    padding: var(--space-32) var(--gutter);
+  }
+
+  .section-lg {
+    padding: var(--space-40) var(--gutter);
+  }
+}
+
+/* Large (1024px+) */
+@media (min-width: 1024px) {
+  .grid-3-lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-4-lg {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-editorial-lg {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gap);
+  }
+}
+
+/* XL (1280px+) */
+@media (min-width: 1280px) {
+  .grid-4-xl {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---- Product Grid Responsive ---- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4) var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6) var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---- Featured Products Responsive ---- */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1100px) {
+  .featured-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .featured-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 440px) {
+  .featured-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .featured-card-img { aspect-ratio: 3/4; }
+}
+
+/* ---- Mobile Menu ---- */
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none !important;
+  }
+
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}
+
+/* ---- Footer Responsive ---- */
+/* Footer styles handled via inline <style> in index.html */
+
+/* ---- Cart Drawer Responsive ---- */
+@media (min-width: 480px) {
+  .cart-drawer {
+    max-width: 440px;
+  }
+}
+
+/* ---- Checkout Responsive ---- */
+@media (min-width: 1024px) {
+  .checkout-layout {
+    grid-template-columns: 1fr 400px;
+  }
+}
+
+/* ---- Typography Responsive ---- */
+@media (max-width: 767px) {
+  .text-display-lg {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  .text-display-md {
+    font-size: clamp(1.75rem, 8vw, 3rem);
+  }
+
+  .text-hero {
+    font-size: clamp(4rem, 20vw, 8rem);
+  }
+
+  .section {
+    padding: var(--space-16) var(--gutter);
+  }
+
+  .section-lg {
+    padding: var(--space-20) var(--gutter);
+  }
+
+  /* Hide desktop nav on mobile */
+  .nav-links {
+    display: none !important;
+  }
+}
+
+/* ---- Large Screens ---- */
+@media (min-width: 1440px) {
+  :root {
+    --gutter: 3rem;
+  }
+}

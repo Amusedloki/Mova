@@ -1,0 +1,124 @@
+/* ============================================
+   MOVA — Design Tokens & CSS Custom Properties
+   ============================================ */
+
+:root {
+  /* ---- Color System ---- */
+  --color-obsidian: #0a0a0a;
+  --color-bone: #f5f0eb;
+  --color-graphite: #1a1a1a;
+  --color-ash: #b5b0aa;
+  --color-terracotta: #c4704a;
+
+  /* Semantic Colors */
+  --color-bg-primary: var(--color-bone);
+  --color-bg-dark: var(--color-obsidian);
+  --color-bg-secondary: var(--color-graphite);
+  --color-text-primary: var(--color-obsidian);
+  --color-text-inverse: var(--color-bone);
+  --color-text-muted: var(--color-ash);
+  --color-accent: var(--color-terracotta);
+  --color-border: rgba(181, 176, 170, 0.3);
+  --color-border-strong: rgba(10, 10, 10, 0.15);
+
+  /* ---- Typography ---- */
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* Font Sizes */
+  --text-xs: 0.6875rem;    /* 11px */
+  --text-sm: 0.8125rem;    /* 13px */
+  --text-base: 1rem;       /* 16px */
+  --text-md: 1.125rem;     /* 18px */
+  --text-lg: 1.25rem;      /* 20px */
+  --text-xl: 1.5rem;       /* 24px */
+  --text-2xl: 2rem;        /* 32px */
+  --text-3xl: 2.5rem;      /* 40px */
+  --text-4xl: 3rem;        /* 48px */
+  --text-5xl: 4rem;        /* 64px */
+  --text-6xl: 5rem;        /* 80px */
+  --text-7xl: 6.25rem;     /* 100px */
+  --text-8xl: 8rem;        /* 128px */
+  --text-9xl: 10rem;       /* 160px */
+  --text-hero: clamp(5rem, 15vw, 12.5rem);
+
+  /* Font Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.03em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.15em;
+  --tracking-ultra: 0.2em;
+  --tracking-mega: 0.3em;
+
+  /* Line Heights */
+  --leading-none: 0.85;
+  --leading-tight: 1;
+  --leading-snug: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --leading-loose: 1.8;
+
+  /* ---- Spacing ---- */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+  --space-40: 10rem;    /* 160px */
+
+  /* ---- Layout ---- */
+  --max-width: 1400px;
+  --max-width-narrow: 900px;
+  --max-width-wide: 1600px;
+  --gutter: clamp(1.5rem, 4vw, 3rem);
+  --gutter-sm: clamp(1rem, 2vw, 1.5rem);
+
+  /* Grid */
+  --grid-cols: 12;
+  --grid-gap: clamp(1rem, 2vw, 1.5rem);
+
+  /* ---- Borders ---- */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* ---- Transitions ---- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-reveal: 900ms;
+
+  /* ---- Z-Index Scale ---- */
+  --z-base: 1;
+  --z-dropdown: 50;
+  --z-sticky: 100;
+  --z-overlay: 150;
+  --z-modal: 200;
+  --z-toast: 300;
+  --z-max: 999;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.15);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,0.2);
+}

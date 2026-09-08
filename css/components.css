@@ -1,0 +1,262 @@
+/* ============================================
+   MOVA — Components
+   ============================================ */
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  padding: var(--space-4) var(--space-8);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: var(--color-obsidian);
+  color: var(--color-bone);
+  border-color: var(--color-obsidian);
+}
+
+.btn-primary:hover {
+  background: var(--color-graphite);
+  color: var(--color-bone);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-obsidian);
+  border-color: var(--color-obsidian);
+}
+
+.btn-outline:hover {
+  background: var(--color-obsidian);
+  color: var(--color-bone);
+}
+
+.btn-outline-light {
+  background: transparent;
+  color: var(--color-bone);
+  border-color: rgba(245, 240, 235, 0.3);
+}
+
+.btn-outline-light:hover {
+  background: var(--color-bone);
+  color: var(--color-obsidian);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: inherit;
+  border-color: transparent;
+}
+
+.btn-ghost:hover {
+  color: var(--color-terracotta);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ---- Filter Pills ---- */
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-ash);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-in-out);
+}
+
+.filter-pill:hover {
+  border-color: var(--color-obsidian);
+}
+
+.filter-pill.active {
+  background: var(--color-obsidian);
+  color: var(--color-bone);
+  border-color: var(--color-obsidian);
+}
+
+/* ---- Size Buttons ---- */
+.size-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  border: 1px solid var(--color-ash);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-in-out);
+}
+
+.size-btn:hover {
+  border-color: var(--color-obsidian);
+}
+
+.size-btn.active {
+  background: var(--color-obsidian);
+  color: var(--color-bone);
+  border-color: var(--color-obsidian);
+}
+
+/* ---- Color Buttons ---- */
+.color-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-in-out);
+  padding: 0;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-btn.active {
+  border-color: var(--color-terracotta);
+  box-shadow: 0 0 0 2px var(--color-bone), 0 0 0 4px var(--color-terracotta);
+}
+
+.color-btn.light-border {
+  border-color: #d1cdc7;
+}
+
+/* ---- Form Inputs ---- */
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  transition: border-color var(--duration-fast) var(--ease-in-out);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-obsidian);
+}
+
+.input::placeholder {
+  color: var(--color-ash);
+}
+
+/* ---- Accordions ---- */
+.accordion-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-out-expo);
+}
+
+.accordion-content.open {
+  max-height: 500px;
+}
+
+.accordion-icon {
+  transition: transform var(--duration-normal) var(--ease-in-out);
+}
+
+.accordion-icon.open {
+  transform: rotate(45deg);
+}
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--color-obsidian);
+  color: var(--color-bone);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: all var(--duration-slow) var(--ease-out-expo);
+  z-index: var(--z-toast);
+  pointer-events: none;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ---- Badge ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 0.5625rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-terracotta);
+  color: var(--color-bone);
+  line-height: 1;
+}
+
+/* ---- Step Progress ---- */
+.step-line {
+  height: 2px;
+  background: var(--color-ash);
+  transition: background var(--duration-normal) var(--ease-in-out);
+}
+
+.step-line.active {
+  background: var(--color-obsidian);
+}
+
+/* ---- Divider ---- */
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  width: 100%;
+}

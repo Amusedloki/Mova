@@ -1,0 +1,207 @@
+/* ============================================
+   MOVA — Product Styles
+   ============================================ */
+
+/* ---- Product Card ---- */
+.product-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-card-image {
+  position: relative;
+  aspect-ratio: 3/4;
+  background: rgba(26, 26, 26, 0.06);
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+}
+
+.product-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+}
+
+.product-card:hover .product-card-image img {
+  opacity: 0;
+}
+
+.product-card-image .img-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-3);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.product-card:hover .product-card-image .img-overlay {
+  opacity: 1;
+}
+
+.product-card-badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+}
+
+.product-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.product-card-collection {
+  font-family: var(--font-display);
+  font-size: 0.625rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+}
+
+.product-card-name {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+}
+
+.product-card-price {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: var(--color-ash);
+  margin-top: 2px;
+}
+
+/* ---- Product Gallery ---- */
+.product-gallery {
+  position: relative;
+  aspect-ratio: 4/5;
+  background: rgba(26, 26, 26, 0.06);
+  overflow: hidden;
+}
+
+.product-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-thumbnails {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.product-thumbnail {
+  width: 64px;
+  height: 80px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color var(--duration-fast);
+}
+
+.product-thumbnail:hover {
+  border-color: var(--color-ash);
+}
+
+.product-thumbnail.active {
+  border-color: var(--color-obsidian);
+}
+
+.product-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Product Info ---- */
+.product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info-sticky {
+  position: sticky;
+  top: 112px;
+}
+
+.product-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-2);
+}
+
+.product-price {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-6);
+}
+
+.product-desc {
+  font-size: var(--text-sm);
+  color: var(--color-graphite);
+  opacity: 0.7;
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-8);
+}
+
+/* ---- Quick View ---- */
+.quick-view-btn {
+  font-family: var(--font-display);
+  font-size: 0.625rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  background: var(--color-obsidian);
+  color: var(--color-bone);
+  padding: var(--space-2) var(--space-3);
+  display: inline-block;
+}
+
+/* ---- Featured Product Layout ---- */
+.featured-product {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.featured-product img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out-expo);
+}
+
+.featured-product:hover img {
+  transform: scale(1.05);
+}
+
+.featured-product-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-6) var(--space-8);
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+
+@media (min-width: 768px) {
+  .featured-product-overlay {
+    padding: var(--space-6) var(--space-8);
+  }
+}
